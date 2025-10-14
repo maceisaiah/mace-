@@ -1,10 +1,15 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 
-type ButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragEnd' | 'onDragStart'> & {
+type ButtonProps = {
   variant?: "primary" | "ghost";
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
 export function Button({ className = "", variant = "primary", children, ...props }: ButtonProps) {
@@ -18,7 +23,12 @@ export function Button({ className = "", variant = "primary", children, ...props
   };
 
   return (
-    <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className={`${base} ${variants[variant]} ${className}`} {...props}>
+    <motion.button 
+      whileHover={{ scale: 1.02 }} 
+      whileTap={{ scale: 0.98 }} 
+      className={`${base} ${variants[variant]} ${className}`} 
+      {...props}
+    >
       {children}
     </motion.button>
   );

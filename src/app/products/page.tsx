@@ -1,3 +1,5 @@
+"use client";
+
 import { products } from "@/lib/products";
 import { ProductGrid } from "@/components/ProductGrid";
 
