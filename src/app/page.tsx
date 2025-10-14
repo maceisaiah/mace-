@@ -21,7 +21,7 @@ export default function Home() {
             </span>
             <br />
             <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-300 bg-clip-text text-transparent sinister-glow">
-              STREETWEAR
+              STUDIOS
             </span>
           </h1>
           
@@ -36,7 +36,7 @@ export default function Home() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="mt-12 text-white/90 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium"
         >
-          Streetwear for creators and misfits. Made by artists for artists who aren&apos;t afraid to dream.
+          Creative studio for creators and misfits. Made by artists for artists who aren&apos;t afraid to dream.
         </motion.p>
 
         {/* Enhanced CTA buttons */}
