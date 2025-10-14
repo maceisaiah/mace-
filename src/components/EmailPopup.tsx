@@ -118,14 +118,14 @@ export function EmailPopup() {
                   <div
                     key={option.id}
                     className={`absolute w-1/2 h-1/2 origin-bottom-right ${
-                      index % 2 === 0 ? 'bg-red-900/70' : 'bg-red-800/70'
+                      index % 2 === 0 ? 'bg-gray-800/80' : 'bg-gray-700/80'
                     }`}
                     style={{
                       transform: `rotate(${index * 60}deg)`,
                       clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
                     }}
                   >
-                    <div className="absolute top-3 left-1/2 transform -translate-x-1/2 text-white text-sm font-bold bg-black/50 px-2 py-1 rounded">
+                    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-xs font-bold bg-black/80 px-3 py-1 rounded border border-gray-500/50">
                       {option.text}
                     </div>
                   </div>
@@ -144,12 +144,19 @@ export function EmailPopup() {
 
             {wonPrize && (
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="text-center p-4 bg-red-900/30 rounded-lg border border-red-500/50"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="text-center p-6 bg-black/80 rounded-xl border-2 border-gray-500/50 shadow-2xl"
               >
-                <p className="text-white font-bold text-lg gothic-text">
-                  🎉 YOU WON: {wonPrize.text} 🎉
+                <div className="text-4xl mb-2">🎉</div>
+                <p className="text-white font-bold text-2xl mb-2 gothic-text">
+                  YOU WON:
+                </p>
+                <div className={`inline-block px-6 py-3 rounded-lg bg-gradient-to-r ${wonPrize.color} text-white font-bold text-xl shadow-lg`}>
+                  {wonPrize.text}
+                </div>
+                <p className="text-gray-400 text-sm mt-3">
+                  Enter your email below to claim your reward
                 </p>
               </motion.div>
             )}
