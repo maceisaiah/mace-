@@ -17,9 +17,9 @@ export function Button({ className = "", variant = "primary", children, ...props
     "relative inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden";
   const variants: Record<string, string> = {
     primary:
-      "bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-500 hover:to-purple-500 active:from-indigo-700 active:to-purple-700 shadow-lg hover:shadow-xl hover:shadow-indigo-500/25 border border-indigo-500/20",
+      "bg-gradient-to-r from-red-600 to-red-800 text-white hover:from-red-500 hover:to-red-700 active:from-red-700 active:to-red-900 shadow-lg hover:shadow-xl hover:shadow-red-500/25 border-2 border-red-500/30 gothic-glow",
     ghost:
-      "bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-white/30 backdrop-blur-sm",
+      "bg-black/50 text-white border-2 border-red-500/30 hover:bg-red-900/20 hover:border-red-400/50 backdrop-blur-sm gothic-border",
   };
 
   return (

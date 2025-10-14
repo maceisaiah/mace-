@@ -24,10 +24,10 @@ export function Navbar() {
   );
 
   return (
-    <nav className="fixed z-50 top-0 inset-x-0 h-16 backdrop-blur-xl bg-black/20 border-b border-white/5 shadow-2xl">
+    <nav className="fixed z-50 top-0 inset-x-0 h-16 backdrop-blur-xl bg-black/40 border-b-2 border-red-500/20 shadow-2xl">
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-full flex items-center">
         <div className="flex-1 flex gap-6 items-center">
-          <Link href="/" className="text-white font-bold tracking-wider text-xl bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+          <Link href="/" className="text-white font-bold tracking-wider text-xl gothic-text gothic-pulse">
             KRYPTIK
           </Link>
           <div className="hidden md:flex gap-8">{link("/products", "Products")}{link("/about", "About")}{link("/contact", "Contact")}</div>
@@ -36,14 +36,14 @@ export function Navbar() {
           <button
             aria-label="Toggle theme"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="p-3 rounded-xl hover:bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:shadow-lg hover:shadow-indigo-500/10"
+            className="p-3 rounded-xl hover:bg-red-900/20 border-2 border-red-500/20 backdrop-blur-sm transition-all duration-300 hover:border-red-400/40 hover:shadow-lg hover:shadow-red-500/20 gothic-border"
           >
             {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
           </button>
-          <Link href="/cart" className="relative p-3 rounded-xl hover:bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:shadow-lg hover:shadow-indigo-500/10">
+          <Link href="/cart" className="relative p-3 rounded-xl hover:bg-red-900/20 border-2 border-red-500/20 backdrop-blur-sm transition-all duration-300 hover:border-red-400/40 hover:shadow-lg hover:shadow-red-500/20 gothic-border">
             <ShoppingCart size={20} />
             {count > 0 && (
-              <span className="absolute -top-2 -right-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-xs font-bold leading-none px-2 py-1 rounded-full shadow-lg animate-pulse">
+              <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-700 text-white text-xs font-bold leading-none px-2 py-1 rounded-full shadow-lg animate-pulse gothic-glow">
                 {count}
               </span>
             )}

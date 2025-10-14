@@ -1,14 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0f;
-  --foreground: #f0f0f5;
-  --accent: #6366f1;
-  --accent-glow: rgba(99, 102, 241, 0.3);
-  --surface: rgba(255, 255, 255, 0.05);
-  --surface-hover: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.1);
-  --text-muted: rgba(255, 255, 255, 0.6);
+  --background: #000000;
+  --foreground: #ffffff;
+  --accent: #ff0000;
+  --accent-glow: rgba(255, 0, 0, 0.4);
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.15);
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --gothic-red: #cc0000;
+  --gothic-gold: #ffd700;
+  --gothic-silver: #c0c0c0;
 }
 
 @theme inline {
@@ -63,4 +66,40 @@ body {
 *:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* Gothic text effects */
+.gothic-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px var(--gothic-red);
+}
+
+.gothic-glow {
+  box-shadow: 0 0 20px var(--gothic-red), 0 0 40px var(--gothic-red), 0 0 60px var(--gothic-red);
+}
+
+.gothic-border {
+  border: 2px solid var(--gothic-red);
+  box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+/* Animated gothic elements */
+@keyframes gothic-pulse {
+  0%, 100% { 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px var(--gothic-red);
+  }
+  50% { 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px var(--gothic-red), 0 0 30px var(--gothic-red);
+  }
+}
+
+.gothic-pulse {
+  animation: gothic-pulse 2s ease-in-out infinite;
+}
+
+/* Gothic grid pattern */
+.gothic-grid {
+  background-image: 
+    linear-gradient(rgba(255, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
 }

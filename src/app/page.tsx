@@ -15,28 +15,28 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative"
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6">
-            <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
-              CRAFTED
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 gothic-text">
+            <span className="bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent gothic-pulse">
+              KRYPTIK
             </span>
             <br />
-            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              FOR THE NIGHT
+            <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-300 bg-clip-text text-transparent">
+              STREETWEAR
             </span>
           </h1>
           
-          {/* Decorative line */}
-          <div className="w-32 h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent mx-auto mt-8 opacity-60" />
+          {/* Gothic decorative line */}
+          <div className="w-48 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent mx-auto mt-8 opacity-80 gothic-glow" />
         </motion.div>
 
-        {/* Subtitle with better spacing */}
+        {/* Subtitle with gothic styling */}
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="mt-12 text-white/80 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+          className="mt-12 text-white/90 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium"
         >
-          Minimal silhouettes. Deep tones. Subtle sheen. A collection designed for the neon afterglow.
+          Streetwear for creators and misfits. Made by artists for artists who aren't afraid to dream.
         </motion.p>
 
         {/* Enhanced CTA buttons */}
