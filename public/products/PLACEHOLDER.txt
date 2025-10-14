@@ -1,0 +1,7 @@
+Add product images named:
+- nocturne-hoodie.jpg
+- umbra-tee.jpg
+- veil-cap.jpg
+
+Use 1200x900 JPGs with dark backgrounds for best results.
+
