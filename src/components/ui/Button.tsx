@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragEnd' | 'onDragStart'> & {
   variant?: "primary" | "ghost";
 };
 
