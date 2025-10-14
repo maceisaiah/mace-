@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CartProvider } from "@/components/CartContext";
 import { BackgroundFX } from "@/components/BackgroundFX";
+import { EmailPopup } from "@/components/EmailPopup";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -39,6 +40,7 @@ export default function RootLayout({
               {children}
             </div>
             <Footer />
+            <EmailPopup />
           </CartProvider>
         </ThemeProvider>
       </body>

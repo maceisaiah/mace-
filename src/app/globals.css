@@ -68,18 +68,73 @@ body {
   outline-offset: 2px;
 }
 
-/* Gothic text effects */
+/* Terrifying text effects */
 .gothic-text {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px var(--gothic-red);
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.9), 
+    0 0 10px var(--gothic-red),
+    0 0 20px var(--gothic-red),
+    0 0 30px var(--gothic-red),
+    0 0 40px var(--gothic-red);
+  filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8));
 }
 
 .gothic-glow {
-  box-shadow: 0 0 20px var(--gothic-red), 0 0 40px var(--gothic-red), 0 0 60px var(--gothic-red);
+  box-shadow: 
+    0 0 20px var(--gothic-red), 
+    0 0 40px var(--gothic-red), 
+    0 0 60px var(--gothic-red),
+    0 0 80px var(--gothic-red),
+    inset 0 0 20px rgba(255, 0, 0, 0.2);
 }
 
 .gothic-border {
-  border: 2px solid var(--gothic-red);
-  box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.3);
+  border: 3px solid var(--gothic-red);
+  box-shadow: 
+    inset 0 0 15px rgba(255, 0, 0, 0.4),
+    0 0 20px rgba(255, 0, 0, 0.6),
+    0 0 40px rgba(255, 0, 0, 0.3);
+}
+
+/* Blood dripping effect */
+.blood-drip {
+  position: relative;
+}
+
+.blood-drip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, var(--gothic-red), transparent);
+  transform: translateX(-50%);
+  animation: bloodDrip 3s ease-in-out infinite;
+}
+
+@keyframes bloodDrip {
+  0%, 100% { opacity: 0; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 1; transform: translateX(-50%) translateY(10px); }
+}
+
+/* Sinister glow */
+.sinister-glow {
+  box-shadow: 
+    0 0 30px rgba(255, 0, 0, 0.8),
+    0 0 60px rgba(255, 0, 0, 0.6),
+    0 0 90px rgba(255, 0, 0, 0.4),
+    inset 0 0 30px rgba(255, 0, 0, 0.3);
+}
+
+/* Creepy text animation */
+.creepy-text {
+  animation: creepyFlicker 0.15s infinite linear;
+}
+
+@keyframes creepyFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
 }
 
 /* Animated gothic elements */

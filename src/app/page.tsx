@@ -15,12 +15,12 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative"
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 gothic-text">
-            <span className="bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent gothic-pulse">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 gothic-text blood-drip">
+            <span className="bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent gothic-pulse creepy-text">
               KRYPTIK
             </span>
             <br />
-            <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-300 bg-clip-text text-transparent sinister-glow">
               STREETWEAR
             </span>
           </h1>
