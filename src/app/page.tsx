@@ -5,19 +5,84 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="relative min-h-[calc(100vh-56px)] bg-gradient-to-b from-black via-[#0b0b12] to-black">
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(800px 400px at 50% 0%, rgba(99,102,241,0.12), transparent 60%)" }} />
-      <section className="max-w-6xl mx-auto px-4 md:px-8 pt-20 pb-24 text-center">
-        <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-4xl md:text-6xl font-semibold tracking-tight text-white">
-          Crafted for the night.
-        </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }} className="mt-4 text-white/70 max-w-2xl mx-auto">
+    <div className="relative min-h-[calc(100vh-64px)] overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative max-w-7xl mx-auto px-4 md:px-8 pt-32 pb-32 text-center">
+        {/* Main heading with enhanced typography */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative"
+        >
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6">
+            <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
+              CRAFTED
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              FOR THE NIGHT
+            </span>
+          </h1>
+          
+          {/* Decorative line */}
+          <div className="w-32 h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent mx-auto mt-8 opacity-60" />
+        </motion.div>
+
+        {/* Subtitle with better spacing */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="mt-12 text-white/80 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+        >
           Minimal silhouettes. Deep tones. Subtle sheen. A collection designed for the neon afterglow.
         </motion.p>
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="mt-8 flex items-center justify-center gap-3">
-          <Link href="/products"><Button>Shop Now</Button></Link>
-          <Link href="/about"><Button variant="ghost">About</Button></Link>
+
+        {/* Enhanced CTA buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6"
+        >
+          <Link href="/products">
+            <Button className="px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-indigo-500/25">
+              Shop Collection
+            </Button>
+          </Link>
+          <Link href="/about">
+            <Button variant="ghost" className="px-8 py-4 text-lg font-medium border-2 border-white/20 hover:border-white/40">
+              Our Story
+            </Button>
+          </Link>
         </motion.div>
+
+        {/* Floating elements for depth */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-2 h-2 bg-indigo-400 rounded-full opacity-60"
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.6, 1, 0.6],
+          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/3 right-1/4 w-1 h-1 bg-purple-400 rounded-full opacity-40"
+          animate={{
+            y: [0, -15, 0],
+            opacity: [0.4, 0.8, 0.4],
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-pink-400 rounded-full opacity-50"
+          animate={{
+            y: [0, -25, 0],
+            opacity: [0.5, 1, 0.5],
+          }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
       </section>
     </div>
   );

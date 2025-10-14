@@ -35,7 +35,7 @@ export default function RootLayout({
           <CartProvider>
             <BackgroundFX />
             <Navbar />
-            <div className="pt-14 min-h-[calc(100vh-56px)]">
+            <div className="pt-16 min-h-[calc(100vh-64px)]">
               {children}
             </div>
             <Footer />
