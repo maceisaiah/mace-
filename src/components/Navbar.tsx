@@ -28,7 +28,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-full flex items-center">
         <div className="flex-1 flex gap-6 items-center">
           <Link href="/" className="text-white font-bold tracking-wider text-xl gothic-text gothic-pulse">
-            KRYPTIK
+            KRYPTIC
           </Link>
           <div className="hidden md:flex gap-8">{link("/products", "Products")}{link("/about", "About")}{link("/contact", "Contact")}</div>
         </div>

@@ -104,7 +104,7 @@ export function EmailPopup() {
               UNLOCK THE DARKNESS
             </h2>
             <p className="text-red-400 text-sm">
-              Join the KRYPTIK underground. Spin for exclusive rewards.
+              Join the KRYPTIC underground. Spin for exclusive rewards.
             </p>
           </div>
 
@@ -118,14 +118,14 @@ export function EmailPopup() {
                   <div
                     key={option.id}
                     className={`absolute w-1/2 h-1/2 origin-bottom-right ${
-                      index % 2 === 0 ? 'bg-red-900/50' : 'bg-red-800/50'
+                      index % 2 === 0 ? 'bg-red-900/70' : 'bg-red-800/70'
                     }`}
                     style={{
                       transform: `rotate(${index * 60}deg)`,
                       clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
                     }}
                   >
-                    <div className="absolute top-2 left-1/2 transform -translate-x-1/2 text-white text-xs font-bold">
+                    <div className="absolute top-3 left-1/2 transform -translate-x-1/2 text-white text-sm font-bold bg-black/50 px-2 py-1 rounded">
                       {option.text}
                     </div>
                   </div>

@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --accent: #ff0000;
-  --accent-glow: rgba(255, 0, 0, 0.4);
-  --surface: rgba(255, 255, 255, 0.03);
-  --surface-hover: rgba(255, 255, 255, 0.06);
-  --border: rgba(255, 255, 255, 0.15);
-  --text-muted: rgba(255, 255, 255, 0.7);
-  --gothic-red: #cc0000;
-  --gothic-gold: #ffd700;
-  --gothic-silver: #c0c0c0;
+  --background: #0a0a0a;
+  --foreground: #e0e0e0;
+  --accent: #666666;
+  --accent-glow: rgba(102, 102, 102, 0.4);
+  --surface: rgba(255, 255, 255, 0.02);
+  --surface-hover: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.1);
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --horror-grey: #404040;
+  --horror-silver: #808080;
+  --horror-dark: #1a1a1a;
+  --horror-accent: #8b8b8b;
 }
 
 @theme inline {
@@ -68,15 +69,14 @@ body {
   outline-offset: 2px;
 }
 
-/* Terrifying text effects */
+/* Horror movie text effects */
 .gothic-text {
   text-shadow: 
     2px 2px 4px rgba(0, 0, 0, 0.9), 
-    0 0 10px var(--gothic-red),
-    0 0 20px var(--gothic-red),
-    0 0 30px var(--gothic-red),
-    0 0 40px var(--gothic-red);
-  filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8));
+    0 0 10px var(--horror-silver),
+    0 0 20px var(--horror-grey),
+    0 0 30px var(--horror-accent);
+  filter: drop-shadow(0 0 5px rgba(128, 128, 128, 0.6));
 }
 
 .gothic-glow {
