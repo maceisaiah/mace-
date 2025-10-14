@@ -36,7 +36,7 @@ export default function Home() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="mt-12 text-white/90 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium"
         >
-          Streetwear for creators and misfits. Made by artists for artists who aren't afraid to dream.
+          Streetwear for creators and misfits. Made by artists for artists who aren&apos;t afraid to dream.
         </motion.p>
 
         {/* Enhanced CTA buttons */}
