@@ -319,32 +319,33 @@ export default function Home() {
                 className="flex justify-start"
               >
                 <motion.div variants={itemVariants} className="group max-w-md mx-auto">
-                  <Link href="/hoodies">
-                    <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg overflow-hidden hover:bg-gray-700/80 transition-colors cursor-pointer">
-                      <div className="aspect-[4/5] relative">
-                        <Image
-                          src="/products/art-in-motion-hoodie.jpg"
-                          alt="ART IN MOTION Hoodie"
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                      <div className="p-6">
-                        <h3 className="font-semibold text-xl mb-3 text-white">ART IN MOTION Hoodie</h3>
-                        <p className="text-gray-300 text-lg font-bold mb-4">$35</p>
-                        <p className="text-gray-400 text-sm mb-4">Distressed black hoodie with vintage wash featuring 'ART IN MOTION' graphic design.</p>
-                        <div className="bg-white text-black px-4 py-2 font-bold tracking-wider text-center rounded hover:bg-gray-100 transition-colors mb-3">
-                          VIEW DETAILS
-                        </div>
-                        <Link
-                          href="/hoodies"
-                          className="block bg-transparent border-2 border-white text-white px-4 py-2 font-bold tracking-wider text-center rounded hover:bg-white hover:text-black transition-colors"
-                        >
-                          VIEW ALL HOODIES
-                        </Link>
-                      </div>
+                  <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg overflow-hidden hover:bg-gray-700/80 transition-colors cursor-pointer">
+                    <div className="aspect-[4/5] relative">
+                      <Image
+                        src="/products/art-in-motion-hoodie.jpg"
+                        alt="ART IN MOTION Hoodie"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
-                  </Link>
+                    <div className="p-6">
+                      <h3 className="font-semibold text-xl mb-3 text-white">ART IN MOTION Hoodie</h3>
+                      <p className="text-gray-300 text-lg font-bold mb-4">$35</p>
+                      <p className="text-gray-400 text-sm mb-4">Distressed black hoodie with vintage wash featuring 'ART IN MOTION' graphic design.</p>
+                      <Link
+                        href="/hoodies"
+                        className="block bg-white text-black px-4 py-2 font-bold tracking-wider text-center rounded hover:bg-gray-100 transition-colors mb-3"
+                      >
+                        VIEW DETAILS
+                      </Link>
+                      <Link
+                        href="/hoodies"
+                        className="block bg-transparent border-2 border-white text-white px-4 py-2 font-bold tracking-wider text-center rounded hover:bg-white hover:text-black transition-colors"
+                      >
+                        VIEW ALL HOODIES
+                      </Link>
+                    </div>
+                  </div>
                 </motion.div>
               </motion.div>
             </motion.div>
