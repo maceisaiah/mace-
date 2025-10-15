@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import { Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { Providers } from "@/components/Providers";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CartProvider } from "@/components/CartContext";
 import { BackgroundFX } from "@/components/BackgroundFX";
-import { EmailPopup } from "@/components/EmailPopup";
+import { ProtectedSite } from "@/components/ProtectedSite";
+import { PasswordProtection } from "@/components/PasswordProtection";
+import { LiveChat } from "@/components/LiveChat";
+// import { EmailPopup } from "@/components/EmailPopup";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -32,17 +36,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${spaceGrotesk.variable} ${geistMono.variable} antialiased bg-black text-white`}> 
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <CartProvider>
-            <BackgroundFX />
-            <Navbar />
-            <div className="pt-16 min-h-[calc(100vh-64px)]">
-              {children}
-            </div>
-            <Footer />
-            <EmailPopup />
-          </CartProvider>
-        </ThemeProvider>
+        <Providers>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <CartProvider>
+              <PasswordProtection>
+                <BackgroundFX />
+                {children}
+                <LiveChat />
+              </PasswordProtection>
+            </CartProvider>
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

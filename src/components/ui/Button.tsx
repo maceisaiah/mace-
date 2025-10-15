@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, HTMLMotionProps } from "framer-motion";
+import { motion } from "framer-motion";
 
 type ButtonProps = {
   variant?: "primary" | "ghost";

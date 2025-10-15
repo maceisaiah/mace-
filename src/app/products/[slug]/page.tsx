@@ -2,7 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/lib/products";
 import { formatPrice } from "@/lib/types";
-import { Button } from "@/components/ui/Button";
+// import { Button } from "@/components/ui/Button";
 import { AddToCart } from "./parts";
 
 type Props = { params: { slug: string } };
@@ -26,5 +26,6 @@ export default function ProductDetailPage({ params }: Props) {
     </div>
   );
 }
+
 
 

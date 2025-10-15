@@ -2,7 +2,31 @@ import type { Product } from "./types";
 
 export const products: Product[] = [
   {
-    id: "p01",
+    id: "art-in-motion-hoodie",
+    slug: "art-in-motion-hoodie",
+    name: "ART IN MOTION Hoodie",
+    shortDescription: "Distressed black hoodie with vintage wash and graffiti-style design.",
+    description:
+      "Distressed black hoodie with vintage wash featuring 'ART IN MOTION' graphic on the front and vibrant graffiti-style emoji design on the back. Features paint splatter details and oversized fit for the creative rebel.",
+    priceCents: 3500,
+    image: "/products/art-in-motion-hoodie.jpg",
+    colors: ["Black"],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"],
+  },
+  {
+    id: "graffiti-rebel-hoodie",
+    slug: "graffiti-rebel-hoodie", 
+    name: "Graffiti Rebel Hoodie",
+    shortDescription: "Urban streetwear hoodie with bold graffiti-inspired graphics.",
+    description:
+      "Bold graffiti-inspired hoodie featuring vibrant street art graphics. Perfect for the urban creative who isn't afraid to make a statement.",
+    priceCents: 3800,
+    image: "/products/graffiti-rebel-hoodie.jpg",
+    colors: ["Black"],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"],
+  },
+  {
+    id: "nocturne-hoodie",
     slug: "nocturne-hoodie",
     name: "Nocturne Hoodie",
     shortDescription: "Heavyweight hoodie – matte black, cyber-noir cut.",
@@ -14,7 +38,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL"],
   },
   {
-    id: "p02",
+    id: "umbra-tee",
     slug: "umbra-tee",
     name: "Umbra Tee",
     shortDescription: "Oversized tee – muted blue-black with soft hand.",
@@ -26,7 +50,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL"],
   },
   {
-    id: "p03",
+    id: "veil-cap",
     slug: "veil-cap",
     name: "Veil Cap",
     shortDescription: "6‑panel cap – low profile, matte hardware.",

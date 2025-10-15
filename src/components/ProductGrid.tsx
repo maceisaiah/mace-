@@ -12,3 +12,10 @@ export function ProductGrid({ products }: { products: Product[] }) {
 }
 
 
+
+
+
+
+
+
+

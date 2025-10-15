@@ -14,29 +14,40 @@ const discountOptions = [
   { id: 6, text: "30% OFF", value: 30, color: "from-red-900 to-black" },
 ];
 
-export function EmailPopup() {
-  const [isOpen, setIsOpen] = useState(false);
+export function EmailPopup({ onClose }: { onClose: () => void }) {
+  const [isOpen] = useState(true);
   const [email, setEmail] = useState("");
   const [isSpinning, setIsSpinning] = useState(false);
   const [wonPrize, setWonPrize] = useState<typeof discountOptions[0] | null>(null);
-  const [hasShown, setHasShown] = useState(false);
+  const [borderColor, setBorderColor] = useState('from-red-500 to-red-700');
+  // const [hasShown, setHasShown] = useState(false);
 
+  // Synchronized color sequence - every element changes together
   useEffect(() => {
-    // Check if popup was shown in the last 30 days
-    const lastShown = localStorage.getItem("emailPopupShown");
-    const now = Date.now();
-    const thirtyDays = 30 * 24 * 60 * 60 * 1000;
-
-    if (!lastShown || now - parseInt(lastShown) > thirtyDays) {
-      // Show popup after 3 seconds
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-        setHasShown(true);
-        localStorage.setItem("emailPopupShown", now.toString());
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
+    const colorSequence = [
+      'from-red-500 to-red-700',      // 1. Deep Red
+      'from-blue-500 to-blue-700',    // 2. Electric Blue  
+      'from-purple-500 to-purple-700', // 3. Royal Purple
+      'from-green-500 to-green-700',   // 4. Forest Green
+      'from-yellow-500 to-yellow-700', // 5. Golden Yellow
+      'from-pink-500 to-pink-700',     // 6. Hot Pink
+      'from-cyan-500 to-cyan-700',     // 7. Bright Cyan
+      'from-orange-500 to-orange-700'  // 8. Burnt Orange
+    ];
+    
+    let currentIndex = 0;
+    
+    // Start immediately with first color
+    setBorderColor(colorSequence[currentIndex]);
+    
+    const interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % colorSequence.length;
+      const newColor = colorSequence[currentIndex];
+      setBorderColor(newColor);
+      console.log('Color changing to:', newColor); // Debug log
+    }, 2500); // Change every 2.5 seconds for better rhythm
+    
+    return () => clearInterval(interval);
   }, []);
 
   const spinWheel = () => {
@@ -59,7 +70,10 @@ export function EmailPopup() {
       // Here you would typically send the email to your backend
       console.log("Email submitted:", email, "Prize won:", wonPrize);
       alert(`Congratulations! You won ${wonPrize.text}! Check your email for details.`);
-      setIsOpen(false);
+      // Close the wheel and return to normal website
+      setTimeout(() => {
+        onClose();
+      }, 1000);
     }
   };
 
@@ -75,18 +89,20 @@ export function EmailPopup() {
       >
         {/* Terrifying background effects */}
         <div className="absolute inset-0 gothic-grid opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-black to-red-900/20" />
+        <div className={`absolute inset-0 bg-gradient-to-br from-red-900/20 via-black to-red-900/20 animate-pulse`} />
         
         <motion.div
+          key={borderColor} // Force re-render when color changes
           initial={{ scale: 0.8, opacity: 0, y: 50 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.8, opacity: 0, y: 50 }}
-          className="relative w-full max-w-md bg-black/90 border-2 border-red-500/50 rounded-2xl p-8 sinister-glow"
+          className={`relative w-full max-w-md bg-gradient-to-r ${borderColor} p-1 rounded-2xl animate-pulse`}
         >
+          <div className="w-full h-full bg-black/90 rounded-2xl p-8 sinister-glow">
           {/* Close button */}
           <button
-            onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 text-red-500 hover:text-red-400 transition-colors"
+            onClick={() => onClose()}
+            className="absolute top-4 right-4 text-red-500 hover:text-red-400 transition-colors z-50"
           >
             <X size={24} />
           </button>
@@ -101,19 +117,26 @@ export function EmailPopup() {
               <Gift className="w-12 h-12 text-red-500 gothic-glow" />
             </motion.div>
             <h2 className="text-2xl font-bold text-white gothic-text mb-2">
-              UNLOCK THE DARKNESS
+              UNLOCK GREATNESS
             </h2>
             <p className="text-red-400 text-sm">
               Join the KRYPTIC underground. Spin for exclusive rewards.
             </p>
+            <button
+              onClick={() => onClose()}
+              className="mt-2 text-gray-400 hover:text-white text-xs underline"
+            >
+              Skip for now
+            </button>
           </div>
 
           {/* Discount Wheel */}
           <div className="mb-6">
             <div className="relative w-48 h-48 mx-auto mb-4">
-              <div className={`w-full h-full rounded-full border-4 border-red-500/50 relative overflow-hidden ${
-                isSpinning ? 'animate-spin' : ''
-              }`} style={{ animationDuration: '2s' }}>
+              <div key={borderColor} className={`w-full h-full rounded-full bg-gradient-to-r ${borderColor} p-1 animate-pulse`}>
+                <div className={`w-full h-full rounded-full bg-gray-900 relative overflow-hidden ${
+                  isSpinning ? 'animate-spin' : ''
+                }`} style={{ animationDuration: '2s' }}>
                 {discountOptions.map((option, index) => (
                   <div
                     key={option.id}
@@ -130,13 +153,15 @@ export function EmailPopup() {
                     </div>
                   </div>
                 ))}
+                </div>
               </div>
               
               {/* Center button */}
               <button
+                key={`button-${borderColor}`}
                 onClick={spinWheel}
                 disabled={isSpinning}
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-red-600 rounded-full border-4 border-red-400 flex items-center justify-center text-white font-bold text-sm hover:bg-red-500 transition-colors disabled:opacity-50 gothic-glow"
+                className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-r ${borderColor} rounded-full border-4 border-white/20 flex items-center justify-center text-white font-bold text-sm hover:scale-105 transition-all duration-500 disabled:opacity-50 gothic-glow animate-pulse`}
               >
                 {isSpinning ? "..." : "SPIN"}
               </button>
@@ -166,14 +191,16 @@ export function EmailPopup() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-500" size={20} />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email..."
-                required
-                className="w-full pl-12 pr-4 py-3 bg-black/50 border-2 border-red-500/30 rounded-lg text-white placeholder-red-400 focus:border-red-400 focus:outline-none gothic-border"
-              />
+              <div className={`w-full rounded-lg bg-gradient-to-r ${borderColor} p-0.5`}>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email..."
+                  required
+                  className="w-full pl-12 pr-4 py-3 bg-black/50 rounded-lg text-white placeholder-red-400 focus:outline-none gothic-border border-0"
+                />
+              </div>
             </div>
 
             <Button
@@ -190,6 +217,7 @@ export function EmailPopup() {
           <p className="text-xs text-red-400/70 text-center mt-4">
             * One-time use. Valid for 30 days. No spam, just fire drops.
           </p>
+          </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>
