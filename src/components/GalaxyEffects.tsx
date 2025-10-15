@@ -21,27 +21,40 @@ export function GalaxyEffects() {
       {/* Galaxy background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/10 to-indigo-900/20"></div>
       
-      {/* Twinkling stars - reduced on mobile */}
-      {Array.from({ length: isMobile ? 20 : 50 }).map((_, i) => (
-        <motion.div
-          key={`star-${i}`}
-          className="absolute w-1 h-1 bg-white rounded-full"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={isMobile ? {} : {
-            opacity: [0, 1, 0],
-            scale: [0.5, 1.5, 0.5],
-          }}
-          transition={isMobile ? {} : {
-            duration: Math.random() * 3 + 1,
-            repeat: Infinity,
-            delay: Math.random() * 5,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+      {/* Realistic twinkling stars - reduced on mobile */}
+      {Array.from({ length: isMobile ? 30 : 80 }).map((_, i) => {
+        const starSize = Math.random() * 2 + 0.5;
+        const starBrightness = Math.random() * 0.8 + 0.2;
+        const starColor = Math.random() > 0.7 ? 
+          (Math.random() > 0.5 ? 'rgb(147, 197, 253)' : 'rgb(251, 191, 36)') : 
+          'rgb(255, 255, 255)';
+        
+        return (
+          <motion.div
+            key={`star-${i}`}
+            className="absolute rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${starSize}px`,
+              height: `${starSize}px`,
+              backgroundColor: starColor,
+              opacity: starBrightness,
+              boxShadow: `0 0 ${starSize * 3}px ${starColor}, 0 0 ${starSize * 6}px ${starColor}40`
+            }}
+            animate={isMobile ? {} : {
+              opacity: [starBrightness * 0.3, starBrightness, starBrightness * 0.7, starBrightness],
+              scale: [0.8, 1.3, 0.9, 1],
+            }}
+            transition={isMobile ? {} : {
+              duration: Math.random() * 4 + 2,
+              repeat: Infinity,
+              delay: Math.random() * 6,
+              ease: "easeInOut",
+            }}
+          />
+        );
+      })}
       
       {/* Floating nebula clouds - reduced on mobile */}
       {Array.from({ length: isMobile ? 2 : 6 }).map((_, i) => (
