@@ -26,19 +26,7 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
       const bypass = urlParams.get('bypass');
       
       if (bypass === 'demo' || bypass === 'vip' || bypass === 'access') {
-        // Auto-authenticate with bypass
-        const authData = {
-          authenticated: true,
-          expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).getTime() // 1 year
-        };
-        localStorage.setItem('kryptic-auth', JSON.stringify(authData));
-        localStorage.setItem('kryptic-first-time', 'true');
-        if (bypass === 'vip') {
-          localStorage.setItem('kryptic-vip', 'true');
-        }
-        setIsAuthenticated(true);
-        
-        // Clean URL
+        // Clean URL but always require password
         window.history.replaceState({}, document.title, window.location.pathname);
         return;
       }
