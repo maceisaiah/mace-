@@ -119,21 +119,23 @@ export function LiveChat() {
       {/* KRYPTBOT Alien Button - Enhanced Visibility */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 text-white p-4 rounded-full shadow-2xl z-[9999] border-2 border-white/20 animate-bounce"
-        whileHover={{ scale: 1.1, boxShadow: "0 0 20px rgba(239, 68, 68, 0.5)" }}
-        whileTap={{ scale: 0.9 }}
+        className="fixed bottom-6 right-6 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white p-5 rounded-full shadow-2xl z-[9999] border-3 border-white/30 animate-pulse"
+        whileHover={{ scale: 1.15, boxShadow: "0 0 25px rgba(239, 68, 68, 0.8)" }}
+        whileTap={{ scale: 0.95 }}
         style={{ 
           position: 'fixed',
           bottom: '24px',
           right: '24px',
-          zIndex: 9999
+          zIndex: 9999,
+          minWidth: '60px',
+          minHeight: '60px'
         }}
       >
-        <div className="text-2xl">
+        <div className="text-3xl font-bold">
           👽
         </div>
         {/* KRYPTBOT Label - Always visible */}
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-black to-gray-800 text-white text-xs px-3 py-1 rounded-full whitespace-nowrap border border-red-500/50">
           KRYPTBOT
         </div>
       </motion.button>
