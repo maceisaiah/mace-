@@ -27,7 +27,7 @@ export function FoolproofPassword({ children }: { children: React.ReactNode }) {
       setError('');
     } else {
       console.log('Password incorrect!');
-      setError('Wrong password! Try: ' + PASSWORD);
+      setError('Wrong password!');
       setPassword('');
     }
   };
