@@ -67,7 +67,7 @@ export default function Home() {
       <UFO />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Link href="/" className="text-2xl font-bold tracking-wider">
@@ -178,7 +178,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="relative z-10 text-center text-white max-w-4xl mx-auto px-4"
+          className="relative z-10 text-center text-white max-w-6xl mx-auto px-4"
         >
           {/* Text background for better readability */}
           <div className="absolute inset-0 bg-black/40 rounded-lg blur-sm -z-10"></div>
@@ -287,7 +287,7 @@ export default function Home() {
             </motion.div>
           );
         })}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             
             {/* Best Selling - Left Side */}
@@ -474,7 +474,7 @@ export default function Home() {
       <section className="py-12 relative overflow-hidden">
         {/* Dark overlay for better text contrast */}
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <PaymentMethods />
         </div>
       </section>
@@ -530,7 +530,7 @@ export default function Home() {
           );
         })}
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-2xl font-bold tracking-wider mb-4 text-white drop-shadow-lg">KRYPTIC STUDIOS</h3>
