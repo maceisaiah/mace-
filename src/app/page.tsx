@@ -61,7 +61,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white relative pb-20 md:pb-0">
+    <div className="min-h-screen bg-black text-white relative">
       <SmokeEffects />
       <GalaxyEffects />
       <UFO />
@@ -480,7 +480,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black py-12 border-t border-gray-800 relative">
+      <footer className="bg-black py-12 border-t border-gray-800 relative mb-0">
         {/* Text readability overlay */}
         <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
         

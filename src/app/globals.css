@@ -38,6 +38,34 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Prevent scrolling beyond footer */
+html, body {
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+/* Ensure footer is the end of the page */
+main, .main-content {
+  min-height: calc(100vh - 80px); /* Account for navbar */
+}
+
+/* Remove any extra space at the bottom */
+* {
+  margin-bottom: 0;
+}
+
+/* Ensure footer is truly the end */
+footer {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Prevent any overflow beyond the footer */
+body {
+  overflow-x: hidden;
 }
 
 /* Custom scrollbar */
