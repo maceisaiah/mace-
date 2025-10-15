@@ -22,17 +22,13 @@ export function EmailPopup({ onClose }: { onClose: () => void }) {
   const [borderColor, setBorderColor] = useState('from-red-500 to-red-700');
   // const [hasShown, setHasShown] = useState(false);
 
-  // Synchronized color sequence - every element changes together
+  // Synchronized color sequence - red, orange, yellow, pink every 3 seconds
   useEffect(() => {
     const colorSequence = [
-      'from-red-500 to-red-700',      // 1. Deep Red
-      'from-blue-500 to-blue-700',    // 2. Electric Blue  
-      'from-purple-500 to-purple-700', // 3. Royal Purple
-      'from-green-500 to-green-700',   // 4. Forest Green
-      'from-yellow-500 to-yellow-700', // 5. Golden Yellow
-      'from-pink-500 to-pink-700',     // 6. Hot Pink
-      'from-cyan-500 to-cyan-700',     // 7. Bright Cyan
-      'from-orange-500 to-orange-700'  // 8. Burnt Orange
+      'from-red-500 to-red-700',      // 1. Red
+      'from-orange-500 to-orange-700', // 2. Orange
+      'from-yellow-500 to-yellow-700', // 3. Yellow
+      'from-pink-500 to-pink-700'     // 4. Pink
     ];
     
     let currentIndex = 0;
@@ -45,7 +41,7 @@ export function EmailPopup({ onClose }: { onClose: () => void }) {
       const newColor = colorSequence[currentIndex];
       setBorderColor(newColor);
       console.log('Color changing to:', newColor); // Debug log
-    }, 2500); // Change every 2.5 seconds for better rhythm
+    }, 3000); // Change every 3 seconds as requested
     
     return () => clearInterval(interval);
   }, []);
@@ -116,9 +112,20 @@ export function EmailPopup({ onClose }: { onClose: () => void }) {
             >
               <Gift className="w-12 h-12 text-red-500 gothic-glow" />
             </motion.div>
-            <h2 className="text-2xl font-bold text-white gothic-text mb-2">
+            <motion.h2 
+              animate={{ 
+                filter: ['blur(0px)', 'blur(1px)', 'blur(0px)'],
+                opacity: [1, 0.8, 1]
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="text-2xl font-bold text-white gothic-text mb-2"
+            >
               UNLOCK GREATNESS
-            </h2>
+            </motion.h2>
             <p className="text-red-400 text-sm">
               Join the KRYPTIC underground. Spin for exclusive rewards.
             </p>
