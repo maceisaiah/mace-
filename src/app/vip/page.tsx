@@ -9,8 +9,11 @@ export default function VIPPage() {
   useEffect(() => {
     // Set VIP customer status with special privileges
     if (typeof window !== 'undefined') {
-      localStorage.setItem('kryptic-authenticated', 'true');
-      localStorage.setItem('kryptic-auth-expiry', new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()); // 1 year
+      const authData = {
+        authenticated: true,
+        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).getTime() // 1 year
+      };
+      localStorage.setItem('kryptic-auth', JSON.stringify(authData));
       localStorage.setItem('kryptic-vip', 'true');
       localStorage.setItem('kryptic-first-time', 'true');
       

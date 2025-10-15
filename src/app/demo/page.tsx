@@ -9,8 +9,11 @@ export default function DemoPage() {
   useEffect(() => {
     // Set first-time customer status
     if (typeof window !== 'undefined') {
-      localStorage.setItem('kryptic-authenticated', 'true');
-      localStorage.setItem('kryptic-auth-expiry', new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()); // 30 days
+      const authData = {
+        authenticated: true,
+        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime() // 30 days
+      };
+      localStorage.setItem('kryptic-auth', JSON.stringify(authData));
       localStorage.setItem('kryptic-first-time', 'true');
       
       // Redirect to home page
