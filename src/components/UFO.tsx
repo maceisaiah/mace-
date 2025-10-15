@@ -9,33 +9,49 @@ export function UFO() {
   const [flightPath, setFlightPath] = useState<{x: number, y: number}[]>([]);
 
   useEffect(() => {
-    // Show UFO every 90 seconds for more frequent sightings
+    // Show UFO every 120 seconds (2 minutes) for better performance
     const showUFO = () => {
       setDirection(Math.random() > 0.5 ? 'left' : 'right');
       
-      // Generate realistic flight path
+      // Generate complex random flight path with off-screen movement
       const path = [];
-      const startY = Math.random() * 300 + 100;
-      const midY = startY + (Math.random() - 0.5) * 100;
-      const endY = startY + (Math.random() - 0.5) * 80;
+      const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
+      const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
       
-      path.push({ x: direction === 'right' ? -100 : 110, y: startY });
-      path.push({ x: 50, y: midY });
-      path.push({ x: direction === 'right' ? 110 : -100, y: endY });
+      // Random starting position (can be off-screen)
+      const startX = Math.random() * (screenWidth + 200) - 100;
+      const startY = Math.random() * (screenHeight + 200) - 100;
+      
+      // Create 2-3 waypoints for simpler movement
+      const waypointCount = 2 + Math.floor(Math.random() * 2);
+      const waypoints = [];
+      
+      for (let i = 0; i < waypointCount; i++) {
+        const x = Math.random() * (screenWidth + 400) - 200; // Can go off-screen
+        const y = Math.random() * (screenHeight + 400) - 200; // Can go off-screen
+        waypoints.push({ x, y });
+      }
+      
+      // Add starting point
+      path.push({ x: startX, y: startY });
+      
+      // Add waypoints
+      waypoints.forEach(waypoint => path.push(waypoint));
       
       setFlightPath(path);
       setIsVisible(true);
       
-      // Hide after animation completes (4 seconds)
-      setTimeout(() => setIsVisible(false), 4000);
+      // Hide after animation completes (4-6 seconds for shorter flight)
+      const flightDuration = 4000 + Math.random() * 2000;
+      setTimeout(() => setIsVisible(false), flightDuration);
     };
 
-    // Initial delay, then every 90 seconds
+    // Initial delay, then every 120 seconds
     const initialDelay = setTimeout(() => {
       showUFO();
-      const interval = setInterval(showUFO, 90000); // 90 seconds
+      const interval = setInterval(showUFO, 120000); // 120 seconds (2 minutes)
       return () => clearInterval(interval);
-    }, 8000); // Start after 8 seconds
+    }, 10000); // Start after 10 seconds
 
     return () => {
       clearTimeout(initialDelay);
@@ -54,22 +70,25 @@ export function UFO() {
         rotate: direction === 'right' ? -15 : 15,
       }}
       animate={{ 
-        opacity: [0, 0.3, 1, 1, 0.7, 0],
+        opacity: [0, 0.2, 0.8, 0.9, 0.7, 0.3, 0],
         x: flightPath.map(p => p.x),
         y: flightPath.map(p => p.y),
-        scale: [0.5, 0.8, 1, 1, 0.8, 0.5],
-        rotate: [direction === 'right' ? -15 : 15, 0, 0, 0, direction === 'right' ? 15 : -15],
+        scale: [0.3, 0.6, 0.9, 1, 0.8, 0.6, 0.3],
+        rotate: Array.from({ length: flightPath.length }, (_, i) => {
+          const progress = i / (flightPath.length - 1);
+          return Math.sin(progress * Math.PI * 4) * 10; // Gentle swaying motion
+        }),
       }}
       transition={{ 
-        duration: 4,
+        duration: 4 + Math.random() * 2, // 4-6 seconds
         ease: "easeInOut",
         opacity: {
-          times: [0, 0.1, 0.2, 0.7, 0.9, 1],
-          duration: 4
+          times: [0, 0.2, 0.8, 1],
+          duration: 4 + Math.random() * 2
         },
         scale: {
-          times: [0, 0.1, 0.2, 0.7, 0.9, 1],
-          duration: 4
+          times: [0, 0.3, 1, 0.8],
+          duration: 4 + Math.random() * 2
         }
       }}
       className="fixed z-50 pointer-events-none"

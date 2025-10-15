@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 const PASSWORD = 'muha';
 
@@ -73,6 +74,46 @@ export function FoolproofPassword({ children }: { children: React.ReactNode }) {
       color: 'white',
       fontFamily: 'Arial, sans-serif'
     }}>
+      {/* Red Shooting Stars Background */}
+      {Array.from({ length: 8 }).map((_, i) => (
+        <motion.div
+          key={`shooting-star-${i}`}
+          style={{
+            position: 'absolute',
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            x: [0, 400],
+            y: [0, 400],
+            opacity: [0, 1, 0],
+            scale: [0, 1.2, 0],
+          }}
+          transition={{
+            duration: Math.random() * 3 + 2,
+            repeat: Infinity,
+            delay: Math.random() * 15,
+            ease: "easeOut",
+          }}
+        >
+          <div style={{
+            width: '1px',
+            height: '32px',
+            background: 'linear-gradient(to right, transparent, #ef4444, transparent)',
+            borderRadius: '1px',
+            filter: 'blur(1px)'
+          }}></div>
+          <div style={{
+            width: '4px',
+            height: '4px',
+            backgroundColor: '#ef4444',
+            borderRadius: '50%',
+            position: 'absolute',
+            top: '-2px',
+            left: '-1.5px'
+          }}></div>
+        </motion.div>
+      ))}
       <div style={{
         backgroundColor: '#1a1a1a',
         padding: '40px',
@@ -95,7 +136,7 @@ export function FoolproofPassword({ children }: { children: React.ReactNode }) {
           color: '#ef4444',
           marginBottom: '20px'
         }}>
-          Enter password to access
+          Enter password to unlock greatness
         </p>
 
         {error && (
@@ -154,7 +195,7 @@ export function FoolproofPassword({ children }: { children: React.ReactNode }) {
           fontSize: '12px',
           color: '#666'
         }}>
-          Hint: The password is "{PASSWORD}"
+          There is no hint. Good luck!
         </div>
       </div>
     </div>

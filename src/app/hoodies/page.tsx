@@ -25,15 +25,20 @@ export default function HoodiesPage() {
   const [isAutoSwapping, setIsAutoSwapping] = useState(true);
   const [addedToCart, setAddedToCart] = useState(false);
 
-  // Get the main hoodie product
-  const hoodie = getProductBySlug('art-in-motion-hoodie');
-  
-  if (!hoodie) {
-    return <div>Product not found</div>;
-  }
+  // Hoodie data
+  const hoodieData = {
+    id: "art-in-motion-hoodie",
+    name: "ART IN MOTION Hoodie", 
+    price: 35, 
+    frontImage: "/products/art-in-motion-hoodie.jpg", 
+    backImage: "/products/graffiti-rebel-hoodie.jpg",
+    description: "Distressed black hoodie with vintage wash featuring 'ART IN MOTION' graphic on the front and vibrant graffiti-style emoji design on the back. Features paint splatter details and oversized fit for the creative rebel.",
+    sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    colors: ['Black']
+  };
 
-  const sizes = hoodie.sizes || ['XS', 'S', 'M', 'L', 'XL', '2XL'];
-  const colors = hoodie.colors || ['Black'];
+  const sizes = hoodieData.sizes;
+  const colors = hoodieData.colors;
   
   const getTotalItems = () => {
     return state.items.reduce((total, item) => total + item.quantity, 0);
@@ -51,22 +56,14 @@ export default function HoodiesPage() {
     return () => clearInterval(interval);
   }, [isAutoSwapping]);
 
-  const hoodie = {
-    id: "art-in-motion-hoodie",
-    name: "ART IN MOTION Hoodie", 
-    price: 35, 
-    frontImage: "/products/art-in-motion-hoodie.jpg", 
-    backImage: "/products/graffiti-rebel-hoodie.jpg",
-    description: "Distressed black hoodie with vintage wash featuring 'ART IN MOTION' graphic on the front and vibrant graffiti-style emoji design on the back. Features paint splatter details and oversized fit for the creative rebel." 
-  };
 
   const handleAddToCart = () => {
-    addToCart({
-      id: hoodie.id,
-      name: hoodie.name,
-      price: hoodie.price,
+    addItem({
+      id: hoodieData.id,
+      name: hoodieData.name,
+      price: hoodieData.price,
       size: selectedSize,
-      image: hoodie.frontImage,
+      image: hoodieData.frontImage,
     });
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 2000);
@@ -74,6 +71,8 @@ export default function HoodiesPage() {
 
   return (
     <div className="min-h-screen bg-black text-white pt-20 relative pb-20 md:pb-0">
+      {/* Text readability overlay */}
+      <div className="absolute inset-0 bg-black/10 pointer-events-none"></div>
       <GalaxyEffects />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
@@ -140,8 +139,8 @@ export default function HoodiesPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-6xl font-bold tracking-wider mb-4">HOODIES</h1>
-          <p className="text-gray-400 text-lg">Essential pieces for creators and misfits. Made by artists for artists who aren&apos;t afraid to dream.</p>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-wider mb-4 text-white drop-shadow-2xl">HOODIES</h1>
+          <p className="text-gray-200 text-lg drop-shadow-lg">Essential pieces for creators and misfits. Made by artists for artists who aren&apos;t afraid to dream.</p>
         </motion.div>
 
         <div className="max-w-2xl mx-auto">
@@ -150,11 +149,11 @@ export default function HoodiesPage() {
             animate={{ opacity: 1, y: 0 }}
             className="group"
           >
-            <div className="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-colors">
+            <div className="bg-gray-800/95 backdrop-blur-sm rounded-lg overflow-hidden hover:bg-gray-700/95 transition-colors">
               <div className="aspect-[4/5] relative">
                 <ProductZoom
-                  src={showBack ? hoodie.backImage : hoodie.frontImage}
-                  alt={showBack ? `${hoodie.name} - Back` : `${hoodie.name} - Front`}
+                  src={showBack ? hoodieData.backImage : hoodieData.frontImage}
+                  alt={showBack ? `${hoodieData.name} - Back` : `${hoodieData.name} - Front`}
                   className="w-full h-full"
                 />
                 
@@ -205,19 +204,19 @@ export default function HoodiesPage() {
               
               <div className="p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold text-xl">{hoodie.name}</h3>
-                  <WishlistButton productId={hoodie.id} productName={hoodie.name} />
+                  <h3 className="font-semibold text-xl text-white drop-shadow-lg">{hoodieData.name}</h3>
+                  <WishlistButton productId={hoodieData.id} productName={hoodieData.name} />
                 </div>
-                <p className="text-gray-400 mb-3 text-sm leading-relaxed">{hoodie.description}</p>
-                <p className="text-white text-2xl font-bold mb-3">${hoodie.price}</p>
+                <p className="text-gray-200 mb-3 text-sm leading-relaxed drop-shadow-lg">{hoodieData.description}</p>
+                <p className="text-white text-2xl font-bold mb-3">${hoodieData.price}</p>
                 
                 {/* Size Selection */}
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-sm font-semibold">Size</h4>
+                    <h4 className="text-sm font-semibold text-white drop-shadow-lg">Size</h4>
                     <button
                       onClick={() => setShowSizeGuide(true)}
-                      className="text-xs text-gray-400 hover:text-white underline"
+                      className="text-xs text-gray-200 hover:text-white underline drop-shadow-lg"
                     >
                       Size Guide
                     </button>

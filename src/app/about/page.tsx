@@ -29,6 +29,8 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-black text-white pt-20 relative">
+      {/* Text readability overlay */}
+      <div className="absolute inset-0 bg-black/10 pointer-events-none"></div>
       <GalaxyEffects />
       
       {/* Navigation */}
@@ -90,8 +92,8 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-6xl font-bold tracking-wider mb-4">ABOUT US</h1>
-          <p className="text-gray-400 text-lg">Creative studio for creators and misfits. Made by artists for artists who aren&apos;t afraid to dream.</p>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-wider mb-4 text-white drop-shadow-2xl">ABOUT US</h1>
+          <p className="text-gray-200 text-lg drop-shadow-lg">Creative studio for creators and misfits. Made by artists for artists who aren&apos;t afraid to dream.</p>
         </motion.div>
 
         <motion.div
@@ -101,8 +103,8 @@ export default function AboutPage() {
           className="grid lg:grid-cols-2 gap-12 items-center mb-20"
         >
           <motion.div variants={itemVariants} className="space-y-6">
-            <h2 className="text-3xl font-bold tracking-wider mb-6">OUR STORY</h2>
-            <div className="space-y-4 text-gray-300 leading-relaxed">
+            <h2 className="text-3xl font-bold tracking-wider mb-6 text-white drop-shadow-2xl">OUR STORY</h2>
+            <div className="space-y-4 text-gray-200 leading-relaxed drop-shadow-lg">
               <p>
                 Born from a creative mind, our brand is more than just clothing — it&apos;s a statement. 
                 Inspired by the art of individuality and driven by a passion for design, every piece 
@@ -145,8 +147,8 @@ export default function AboutPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3">CREATIVE VISION</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-xl font-bold mb-3 text-white drop-shadow-lg">CREATIVE VISION</h3>
+              <p className="text-gray-200 text-sm drop-shadow-lg">
                 Every design starts with a vision. We push boundaries and challenge conventions 
                 to create pieces that stand out from the crowd.
               </p>
@@ -160,8 +162,8 @@ export default function AboutPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3">QUALITY CRAFT</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-xl font-bold mb-3 text-white drop-shadow-lg">QUALITY CRAFT</h3>
+              <p className="text-gray-200 text-sm drop-shadow-lg">
                 Premium materials and attention to detail. We believe in creating pieces that 
                 last and look better with time.
               </p>
@@ -175,8 +177,8 @@ export default function AboutPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3">COMMUNITY FIRST</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-xl font-bold mb-3 text-white drop-shadow-lg">COMMUNITY FIRST</h3>
+              <p className="text-gray-200 text-sm drop-shadow-lg">
                 Made by artists for artists. We&apos;re building a community of creators who 
                 aren&apos;t afraid to dream and express themselves.
               </p>
@@ -191,8 +193,8 @@ export default function AboutPage() {
           className="text-center bg-gray-800 rounded-lg p-12 border border-gray-700"
         >
           <motion.div variants={itemVariants}>
-            <h2 className="text-3xl font-bold tracking-wider mb-6">JOIN THE MOVEMENT</h2>
-            <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold tracking-wider mb-6 text-white drop-shadow-2xl">JOIN THE MOVEMENT</h2>
+            <p className="text-gray-200 text-lg mb-8 max-w-2xl mx-auto drop-shadow-lg">
               Ready to express your creativity? Join thousands of artists, creators, and misfits 
               who choose Kryptic Studios for their wardrobe.
             </p>

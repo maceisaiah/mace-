@@ -120,17 +120,58 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-        <Image
-            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop"
-            alt="Kryptic Studio Hero"
-            fill
-            className="object-cover"
-          priority
-        />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
+        
+        {/* Hero Section Shooting Stars - ultra-optimized */}
+        {Array.from({ length: 6 }).map((_, i) => {
+          const colors = ['white', 'red', 'green'];
+          const color = colors[i % 3];
+          const colorClasses = {
+            white: {
+              trail: 'from-transparent via-white to-transparent',
+              head: 'bg-white'
+            },
+            red: {
+              trail: 'from-transparent via-red-500 to-transparent',
+              head: 'bg-red-500'
+            },
+            green: {
+              trail: 'from-transparent via-green-500 to-transparent',
+              head: 'bg-green-500'
+            }
+          };
+          
+          return (
+            <motion.div
+              key={`hero-shooting-${i}`}
+              className="absolute z-10"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                x: [0, typeof window !== 'undefined' ? window.innerWidth + 200 : 800],
+                y: [0, typeof window !== 'undefined' ? window.innerHeight + 200 : 600],
+                opacity: [0, 1, 0],
+                scale: [0, 1.5, 0],
+              }}
+              transition={{
+                duration: Math.random() * 5 + 3,
+                repeat: Infinity,
+                delay: Math.random() * 20,
+                ease: "easeOut",
+              }}
+            >
+              <div className={`w-1 h-8 bg-gradient-to-r ${colorClasses[color as keyof typeof colorClasses].trail} rounded-full blur-sm`}></div>
+              <div className={`w-2 h-2 ${colorClasses[color as keyof typeof colorClasses].head} rounded-full absolute -top-1 -left-0.5`}></div>
+            </motion.div>
+          );
+        })}
+        
+        
+        {/* Darker overlay for deeper space vibe */}
+        <div className="absolute inset-0 bg-black/20" />
+        {/* Additional dark gradient for extra depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/70" />
 
         {/* Hero Content */}
         <motion.div
@@ -139,11 +180,13 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.2 }}
           className="relative z-10 text-center text-white max-w-4xl mx-auto px-4"
         >
+          {/* Text background for better readability */}
+          <div className="absolute inset-0 bg-black/40 rounded-lg blur-sm -z-10"></div>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-bold text-5xl md:text-7xl lg:text-8xl tracking-wider mb-6"
+            className="font-bold text-5xl md:text-7xl lg:text-8xl tracking-wider mb-6 text-white drop-shadow-2xl"
           >
             KRYPTIC STUDIOS
           </motion.h1>
@@ -152,7 +195,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-200"
+            className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-100 drop-shadow-lg"
           >
             Creative studio for creators and misfits. Made by artists for artists who aren&apos;t afraid to dream.
           </motion.p>
@@ -195,144 +238,166 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Featured Products Section */}
-      <section className="py-20 bg-gray-900">
+      {/* Best Selling & About Section - Side by Side */}
+      <section className="py-20 relative overflow-hidden">
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/10"></div>
+        {/* Section Shooting Stars */}
+        {Array.from({ length: 6 }).map((_, i) => {
+          const colors = ['white', 'red', 'green'];
+          const color = colors[i % 3];
+          const colorClasses = {
+            white: {
+              trail: 'from-transparent via-white to-transparent',
+              head: 'bg-white'
+            },
+            red: {
+              trail: 'from-transparent via-red-500 to-transparent',
+              head: 'bg-red-500'
+            },
+            green: {
+              trail: 'from-transparent via-green-500 to-transparent',
+              head: 'bg-green-500'
+            }
+          };
+
+          return (
+            <motion.div
+              key={`section-shooting-${i}`}
+              className="absolute z-10"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                x: [0, typeof window !== 'undefined' ? window.innerWidth + 200 : 800],
+                y: [0, typeof window !== 'undefined' ? window.innerHeight + 200 : 600],
+                opacity: [0, 1, 0],
+                scale: [0, 1.2, 0],
+              }}
+              transition={{
+                duration: Math.random() * 5 + 3,
+                repeat: Infinity,
+                delay: Math.random() * 15,
+                ease: "easeOut",
+              }}
+            >
+              <div className={`w-1 h-6 bg-gradient-to-r ${colorClasses[color as keyof typeof colorClasses].trail} rounded-full blur-sm`}></div>
+              <div className={`w-2 h-2 ${colorClasses[color as keyof typeof colorClasses].head} rounded-full absolute -top-1 -left-0.5`}></div>
+            </motion.div>
+          );
+        })}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-            className="text-center mb-16"
-          >
-            <motion.h2
-              variants={itemVariants}
-              className="font-bold text-4xl md:text-5xl tracking-wider mb-4"
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            
+            {/* Best Selling - Left Side */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={containerVariants}
+              className="space-y-8"
             >
-              BEST SELLING
-            </motion.h2>
-            <motion.p
-              variants={itemVariants}
-              className="text-gray-400 max-w-2xl mx-auto text-lg"
-            >
-              Essential pieces from our latest collection. Crafted for creators, designed for rebels.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={containerVariants}
-            className="grid grid-cols-1 gap-8 max-w-md mx-auto"
-          >
-            {[
-              { name: "ART IN MOTION Hoodie", price: "$35", image: "/products/art-in-motion-hoodie.jpg" }
-            ].map((product, index) => (
-              <motion.div key={index} variants={itemVariants} className="group">
-                <Link href="/hoodies">
-                  <div className="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-colors cursor-pointer">
-                    <div className="aspect-square relative">
-            <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
-                      <p className="text-gray-400 text-lg font-bold">{product.price}</p>
-                    </div>
-                  </div>
-                </Link>
+              <motion.div variants={itemVariants} className="text-center lg:text-left">
+                <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl tracking-wider mb-4 text-white drop-shadow-2xl">
+                  BEST SELLING
+                </h2>
+                <p className="text-gray-300 text-lg mb-6">
+                  Essential pieces from our latest collection. Crafted for creators, designed for rebels.
+                </p>
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  We believe in the power of creative expression and the strength of those who dare to be different. 
+                  Our mission is to provide high-quality apparel that represents the underground creative movement.
+                </p>
               </motion.div>
-            ))}
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center mt-12"
-          >
-            <Link
-              href="/hoodies"
-              className="inline-block bg-white text-black px-8 py-4 font-bold tracking-wider hover:bg-gray-100 transition-colors text-lg"
-            >
-              VIEW ALL HOODIES
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="py-20 bg-gray-900">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-          >
-            <motion.div variants={itemVariants}>
-              <h2 className="font-bold text-4xl md:text-5xl tracking-wider mb-6">
-                ABOUT KRYPTIC STUDIOS
-              </h2>
-              <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-                Born from a creative mind, our brand is more than just clothing — it&apos;s a statement. 
-                Inspired by the art of individuality and driven by a passion for design, every piece we create tells a story. 
-                We believe fashion should be fearless, personal, and unapologetically original.
-              </p>
-              <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-                From bold staples to subtle essentials, our collections are crafted to help you express who you are — without saying a word.
-                <br/><br/>
-                Welcome to a space where creativity meets confidence. Welcome to your new favorite wardrobe.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">Premium quality materials</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">Handcrafted with attention to detail</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">Limited edition drops</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">Supporting the creative community</span>
-                </div>
-              </div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={containerVariants}
+                className="flex justify-start"
+              >
+                <motion.div variants={itemVariants} className="group max-w-md mx-auto">
+                  <Link href="/hoodies">
+                    <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg overflow-hidden hover:bg-gray-700/80 transition-colors cursor-pointer">
+                      <div className="aspect-[4/5] relative">
+                        <Image
+                          src="/products/art-in-motion-hoodie.jpg"
+                          alt="ART IN MOTION Hoodie"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="font-semibold text-xl mb-3 text-white">ART IN MOTION Hoodie</h3>
+                        <p className="text-gray-300 text-lg font-bold mb-4">$35</p>
+                        <p className="text-gray-400 text-sm mb-4">Distressed black hoodie with vintage wash featuring 'ART IN MOTION' graphic design.</p>
+                        <div className="bg-white text-black px-4 py-2 font-bold tracking-wider text-center rounded hover:bg-gray-100 transition-colors mb-3">
+                          VIEW DETAILS
+                        </div>
+                        <Link
+                          href="/hoodies"
+                          className="block bg-transparent border-2 border-white text-white px-4 py-2 font-bold tracking-wider text-center rounded hover:bg-white hover:text-black transition-colors"
+                        >
+                          VIEW ALL HOODIES
+                        </Link>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              </motion.div>
             </motion.div>
-            <motion.div variants={itemVariants} className="relative">
-              <div className="aspect-square bg-gray-800 rounded-lg overflow-hidden relative">
-          <Image
-                  src="/products/art-in-motion-hoodie.jpg"
-                  alt="ART IN MOTION Hoodie - Kryptic Studios"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4 border border-gray-700">
-                    <p className="text-white text-sm font-medium">&ldquo;The underground awaits those who dare to create&rdquo;</p>
-                    <p className="text-gray-400 text-xs mt-1">- Kryptic Studios</p>
+
+            {/* About Kryptic Studios - Right Side */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={containerVariants}
+              className="space-y-8"
+            >
+              <motion.div variants={itemVariants}>
+                <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl tracking-wider mb-6 text-white drop-shadow-2xl">
+                  ABOUT KRYPTIC STUDIOS
+                </h2>
+                <p className="text-lg text-gray-300 mb-6 leading-relaxed">
+                  Born from a creative mind, our brand is more than just clothing — it&apos;s a statement. 
+                  Inspired by the art of individuality and driven by a passion for design, every piece we create tells a story. 
+                  We believe fashion should be fearless, personal, and unapologetically original.
+                </p>
+                <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+                  From the streets to the stars, we create pieces that speak to the rebel in all of us. 
+                  Each design is a canvas for self-expression, a way to show the world who you really are.
+                </p>
+              </motion.div>
+
+              <motion.div variants={itemVariants} className="relative max-w-md mx-auto">
+                <div className="aspect-[4/5] relative rounded-lg overflow-hidden">
+                  <Image
+                    src="/products/graffiti-rebel-hoodie.jpg"
+                    alt="Kryptic Studios Brand"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4 border border-gray-700">
+                      <p className="text-white text-sm font-medium">&ldquo;The underground awaits those who dare to create&rdquo;</p>
+                      <p className="text-gray-400 text-xs mt-1">- Kryptic Studios</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Brand Statement Section */}
-      <section className="py-20 bg-black">
+      {/* Learn More Section - Bottom Middle */}
+      <section className="py-16 relative overflow-hidden">
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
@@ -340,23 +405,10 @@ export default function Home() {
             viewport={{ once: true, amount: 0.5 }}
             variants={containerVariants}
           >
-            <motion.h2
-              variants={itemVariants}
-              className="font-bold text-4xl md:text-5xl tracking-wider mb-8"
-            >
-              CREATIVE REBELLION
-            </motion.h2>
-            <motion.p
-              variants={itemVariants}
-              className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
-            >
-              We believe in the power of creative expression and the strength of those who dare to be different. 
-              Our mission is to provide high-quality apparel that represents the underground creative movement.
-            </motion.p>
             <motion.div variants={itemVariants}>
               <Link
                 href="/about"
-                className="inline-block border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-black transition-colors text-lg"
+                className="inline-block bg-white text-black px-8 py-4 font-bold tracking-wider hover:bg-gray-100 transition-colors text-lg"
               >
                 LEARN MORE
               </Link>
@@ -366,7 +418,9 @@ export default function Home() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-16 relative overflow-hidden">
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
@@ -416,7 +470,9 @@ export default function Home() {
       </section>
 
       {/* Payment Methods */}
-      <section className="py-12 bg-gray-900">
+      <section className="py-12 relative overflow-hidden">
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PaymentMethods />
         </div>
@@ -427,7 +483,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-2xl font-bold tracking-wider mb-4">KRYPTIC STUDIOS</h3>
+              <h3 className="text-2xl font-bold tracking-wider mb-4 text-white drop-shadow-lg">KRYPTIC STUDIOS</h3>
               <p className="text-gray-400">
                 Creative studio for creators and misfits. Made by artists for artists who aren&apos;t afraid to dream.
               </p>
