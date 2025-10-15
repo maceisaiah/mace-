@@ -8,7 +8,7 @@ import { Footer } from "@/components/Footer";
 import { CartProvider } from "@/components/CartContext";
 import { BackgroundFX } from "@/components/BackgroundFX";
 import { ProtectedSite } from "@/components/ProtectedSite";
-import { SimplePasswordProtection } from "@/components/SimplePasswordProtection";
+import { UltraSimplePassword } from "@/components/UltraSimplePassword";
 import { LiveChat } from "@/components/LiveChat";
 import { UFO } from "@/components/UFO";
 // import { EmailPopup } from "@/components/EmailPopup";
@@ -40,14 +40,14 @@ export default function RootLayout({
         <Providers>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <CartProvider>
-              <SimplePasswordProtection>
+              <UltraSimplePassword>
                 <BackgroundFX />
                 <UFO />
                 <Navbar />
                 {children}
                 <Footer />
                 <LiveChat />
-              </SimplePasswordProtection>
+              </UltraSimplePassword>
             </CartProvider>
           </ThemeProvider>
         </Providers>

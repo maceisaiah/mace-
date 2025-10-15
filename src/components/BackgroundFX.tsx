@@ -4,46 +4,111 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function BackgroundFX() {
-  const [stars, setStars] = useState<Array<{id: number, x: number, y: number, size: number, brightness: number, twinkle: number, color: string, layer: number}>>([]);
+  const [stars, setStars] = useState<Array<{id: number, x: number, y: number, size: number, brightness: number, twinkle: number, color: string, layer: number, halo: boolean}>>([]);
   const [constellations, setConstellations] = useState<Array<{id: number, points: Array<{x: number, y: number}>, visible: boolean}>>([]);
+  const [nebulas, setNebulas] = useState<Array<{id: number, x: number, y: number, size: number, opacity: number, color: string}>>([]);
+  const [shootingStars, setShootingStars] = useState<Array<{id: number, x: number, y: number, angle: number, speed: number}>>([]);
 
   useEffect(() => {
     // Generate ultra-realistic starfield with multiple layers
     const generateStars = () => {
       const newStars = [];
       const newConstellations = [];
+      const newNebulas = [];
+      const newShootingStars = [];
       
-      // Background stars (distant)
-      for (let i = 0; i < 200; i++) {
-        const brightness = Math.random() * 0.6 + 0.1;
+      // Deep space stars (very distant, tiny)
+      for (let i = 0; i < 500; i++) {
+        const brightness = Math.random() * 0.4 + 0.05;
         newStars.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 100,
-          size: Math.random() * 1.5 + 0.3,
+          size: Math.random() * 0.8 + 0.2,
           brightness: brightness,
-          twinkle: Math.random() * 6 + 3,
-          color: Math.random() > 0.8 ? 
+          twinkle: Math.random() * 8 + 5,
+          color: Math.random() > 0.9 ? 
             (Math.random() > 0.5 ? 'rgb(147, 197, 253)' : 'rgb(251, 191, 36)') : 
             'rgb(255, 255, 255)',
-          layer: 1
+          layer: 1,
+          halo: Math.random() > 0.95
+        });
+      }
+      
+      // Background stars (distant)
+      for (let i = 500; i < 800; i++) {
+        const brightness = Math.random() * 0.7 + 0.1;
+        newStars.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 1.2 + 0.4,
+          brightness: brightness,
+          twinkle: Math.random() * 6 + 3,
+          color: Math.random() > 0.85 ? 
+            (Math.random() > 0.5 ? 'rgb(147, 197, 253)' : 'rgb(251, 191, 36)') : 
+            'rgb(255, 255, 255)',
+          layer: 2,
+          halo: Math.random() > 0.9
         });
       }
       
       // Foreground stars (brighter)
-      for (let i = 200; i < 280; i++) {
-        const brightness = Math.random() * 0.8 + 0.3;
+      for (let i = 800; i < 1000; i++) {
+        const brightness = Math.random() * 0.9 + 0.3;
         newStars.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 100,
-          size: Math.random() * 2.5 + 1,
+          size: Math.random() * 3 + 1,
           brightness: brightness,
           twinkle: Math.random() * 4 + 2,
           color: Math.random() > 0.7 ? 
             (Math.random() > 0.5 ? 'rgb(147, 197, 253)' : 'rgb(251, 191, 36)') : 
             'rgb(255, 255, 255)',
-          layer: 2
+          layer: 3,
+          halo: Math.random() > 0.8
+        });
+      }
+
+      // Bright stars with halos
+      for (let i = 1000; i < 1050; i++) {
+        const brightness = Math.random() * 0.5 + 0.8;
+        newStars.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 4 + 2,
+          brightness: brightness,
+          twinkle: Math.random() * 3 + 1,
+          color: Math.random() > 0.6 ? 
+            (Math.random() > 0.5 ? 'rgb(147, 197, 253)' : 'rgb(251, 191, 36)') : 
+            'rgb(255, 255, 255)',
+          layer: 4,
+          halo: true
+        });
+      }
+
+      // Generate realistic nebulas
+      for (let i = 0; i < 8; i++) {
+        newNebulas.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 300 + 200,
+          opacity: Math.random() * 0.3 + 0.1,
+          color: ['rgb(139, 69, 19)', 'rgb(75, 0, 130)', 'rgb(220, 20, 60)', 'rgb(25, 25, 112)', 'rgb(139, 0, 139)', 'rgb(0, 100, 0)'][Math.floor(Math.random() * 6)]
+        });
+      }
+
+      // Generate shooting stars
+      for (let i = 0; i < 5; i++) {
+        newShootingStars.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          angle: Math.random() * 360,
+          speed: Math.random() * 2 + 1
         });
       }
       
