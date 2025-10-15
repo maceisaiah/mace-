@@ -10,19 +10,28 @@ export function SimplePasswordProtection({ children }: SimplePasswordProtectionP
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // Force password protection - always start with false
+  console.log('SimplePasswordProtection: isAuthenticated =', isAuthenticated);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Password submitted:', password);
     if (password === 'muha') {
+      console.log('Password correct! Setting authenticated to true');
       setIsAuthenticated(true);
     } else {
-      alert('Wrong password!');
+      console.log('Password incorrect!');
+      alert('Wrong password! Try "muha"');
       setPassword('');
     }
   };
 
   if (isAuthenticated) {
+    console.log('Rendering protected content');
     return <>{children}</>;
   }
+
+  console.log('Rendering password screen');
 
   return (
     <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
