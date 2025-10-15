@@ -43,7 +43,9 @@ export default function RootLayout({
               <SimplePasswordProtection>
                 <BackgroundFX />
                 <UFO />
+                <Navbar />
                 {children}
+                <Footer />
                 <LiveChat />
               </SimplePasswordProtection>
             </CartProvider>
