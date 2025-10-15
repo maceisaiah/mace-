@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Lock, Eye, EyeOff } from 'lucide-react';
 
-const CORRECT_PASSWORD = '1234321';
+const CORRECT_PASSWORD = 'muha';
 const SPECIAL_SESSION_PASSWORD = 'KRYPTIC2026';
 
 interface PasswordProtectionProps {
@@ -18,13 +18,9 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [borderColor, setBorderColor] = useState('from-red-500 to-red-700');
-  const [isReady, setIsReady] = useState(false);
 
-  useEffect(() => {
-    // Always require password - no session tracking
-    // This ensures password is required every single time
-    setIsReady(true);
-  }, []);
+  // Force password protection - no useEffect needed
+  console.log('PasswordProtection rendered, isAuthenticated:', isAuthenticated);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,11 +42,6 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
     }
     setIsLoading(false);
   };
-
-  // Don't render anything until component is ready
-  if (!isReady) {
-    return null;
-  }
 
   if (isAuthenticated) {
     return <>{children}</>;
