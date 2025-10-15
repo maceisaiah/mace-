@@ -19,8 +19,30 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
   const [borderColor, setBorderColor] = useState('from-red-500 to-red-700');
 
   useEffect(() => {
-    // Check if user is already authenticated and not expired
+    // Check for bypass parameter first
     if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const bypass = urlParams.get('bypass');
+      
+      if (bypass === 'demo' || bypass === 'vip' || bypass === 'access') {
+        // Auto-authenticate with bypass
+        const authData = {
+          authenticated: true,
+          expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).getTime() // 1 year
+        };
+        localStorage.setItem('kryptic-auth', JSON.stringify(authData));
+        localStorage.setItem('kryptic-first-time', 'true');
+        if (bypass === 'vip') {
+          localStorage.setItem('kryptic-vip', 'true');
+        }
+        setIsAuthenticated(true);
+        
+        // Clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+        return;
+      }
+      
+      // Check if user is already authenticated and not expired
       const authData = localStorage.getItem('kryptic-auth');
       if (authData) {
         try {
