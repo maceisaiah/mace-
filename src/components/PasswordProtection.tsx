@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Lock, Eye, EyeOff } from 'lucide-react';
 
 const CORRECT_PASSWORD = '1234321';
+const SPECIAL_SESSION_PASSWORD = 'KRYPTIC2026';
 
 interface PasswordProtectionProps {
   children: React.ReactNode;
@@ -81,6 +82,18 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
           expiresAt: new Date('2026-01-01').getTime()
         };
         localStorage.setItem('kryptic-auth', JSON.stringify(authData));
+      }
+    } else if (password === SPECIAL_SESSION_PASSWORD) {
+      setIsAuthenticated(true);
+      // Special session password - active until Jan 1st, 2026
+      if (typeof window !== 'undefined') {
+        const authData = {
+          authenticated: true,
+          expiresAt: new Date('2026-01-01').getTime(),
+          specialSession: true
+        };
+        localStorage.setItem('kryptic-auth', JSON.stringify(authData));
+        localStorage.setItem('kryptic-special-session', 'true');
       }
     } else {
       setError('Incorrect password. Access denied.');
