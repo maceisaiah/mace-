@@ -20,14 +20,13 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
   const [borderColor, setBorderColor] = useState('from-red-500 to-red-700');
 
   useEffect(() => {
-    // Check for bypass parameter first
+    // Check if password already entered this session
     if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const bypass = urlParams.get('bypass');
+      const sessionAuth = sessionStorage.getItem('kryptic-session-authenticated');
       
-      if (bypass === 'demo' || bypass === 'vip' || bypass === 'access') {
-        // Clean URL but always require password
-        window.history.replaceState({}, document.title, window.location.pathname);
+      if (sessionAuth === 'true') {
+        // Already authenticated this session
+        setIsAuthenticated(true);
         return;
       }
       
@@ -40,6 +39,8 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
           const expirationDate = new Date('2026-01-01').getTime();
           
           if (authenticated && now < expirationDate) {
+            // Mark this session as authenticated
+            sessionStorage.setItem('kryptic-session-authenticated', 'true');
             setIsAuthenticated(true);
           } else {
             // Clear expired auth
@@ -70,6 +71,8 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
           expiresAt: new Date('2026-01-01').getTime()
         };
         localStorage.setItem('kryptic-auth', JSON.stringify(authData));
+        // Mark this session as authenticated
+        sessionStorage.setItem('kryptic-session-authenticated', 'true');
       }
     } else if (password === SPECIAL_SESSION_PASSWORD) {
       setIsAuthenticated(true);
@@ -82,6 +85,8 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
         };
         localStorage.setItem('kryptic-auth', JSON.stringify(authData));
         localStorage.setItem('kryptic-special-session', 'true');
+        // Mark this session as authenticated
+        sessionStorage.setItem('kryptic-session-authenticated', 'true');
       }
     } else {
       setError('Incorrect password. Access denied.');
