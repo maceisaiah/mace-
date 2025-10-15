@@ -66,6 +66,16 @@ main, .main-content {
 footer {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+/* Remove any scrollbars from footer */
+footer * {
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
 }
 
 /* Prevent any overflow beyond the footer and horizontal scrolling */
