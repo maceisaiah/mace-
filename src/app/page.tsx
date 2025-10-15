@@ -483,6 +483,53 @@ export default function Home() {
       <footer className="bg-black py-12 border-t border-gray-800 relative">
         {/* Text readability overlay */}
         <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
+        
+        {/* Footer Shooting Stars */}
+        {Array.from({ length: 8 }).map((_, i) => {
+          const colors = ['white', 'red', 'green'];
+          const color = colors[i % 3];
+          const colorClasses = {
+            white: {
+              trail: 'from-transparent via-white to-transparent',
+              head: 'bg-white'
+            },
+            red: {
+              trail: 'from-transparent via-red-500 to-transparent',
+              head: 'bg-red-500'
+            },
+            green: {
+              trail: 'from-transparent via-green-500 to-transparent',
+              head: 'bg-green-500'
+            }
+          };
+
+          return (
+            <motion.div
+              key={`footer-shooting-${i}`}
+              className="absolute z-10"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                x: [0, typeof window !== 'undefined' ? window.innerWidth + 200 : 800],
+                y: [0, typeof window !== 'undefined' ? window.innerHeight + 200 : 600],
+                opacity: [0, 1, 0],
+                scale: [0, 1.2, 0],
+              }}
+              transition={{
+                duration: Math.random() * 5 + 3,
+                repeat: Infinity,
+                delay: Math.random() * 15,
+                ease: "easeOut",
+              }}
+            >
+              <div className={`w-1 h-6 bg-gradient-to-r ${colorClasses[color as keyof typeof colorClasses].trail} rounded-full blur-sm`}></div>
+              <div className={`w-2 h-2 ${colorClasses[color as keyof typeof colorClasses].head} rounded-full absolute -top-1 -left-0.5`}></div>
+            </motion.div>
+          );
+        })}
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
