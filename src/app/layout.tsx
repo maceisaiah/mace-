@@ -10,6 +10,7 @@ import { BackgroundFX } from "@/components/BackgroundFX";
 import { ProtectedSite } from "@/components/ProtectedSite";
 import { PasswordProtection } from "@/components/PasswordProtection";
 import { LiveChat } from "@/components/LiveChat";
+import { UFO } from "@/components/UFO";
 // import { EmailPopup } from "@/components/EmailPopup";
 import "./globals.css";
 
@@ -41,6 +42,7 @@ export default function RootLayout({
             <CartProvider>
               <PasswordProtection>
                 <BackgroundFX />
+                <UFO />
                 {children}
                 <LiveChat />
               </PasswordProtection>
