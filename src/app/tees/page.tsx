@@ -16,6 +16,8 @@ export default function TeesPage() {
 
   return (
     <div className="min-h-screen bg-black text-white pt-20 relative">
+      {/* Text readability overlay */}
+      <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
       <GalaxyEffects />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
@@ -76,8 +78,8 @@ export default function TeesPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-6xl font-bold tracking-wider mb-4">T-SHIRTS</h1>
-          <p className="text-gray-400 text-lg">Essential basics for the creative mind. Made by artists for artists who aren&apos;t afraid to dream.</p>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-wider mb-4 text-white drop-shadow-2xl">T-SHIRTS</h1>
+          <p className="text-gray-200 text-lg drop-shadow-lg">Essential basics for the creative mind. Made by artists for artists who aren&apos;t afraid to dream.</p>
         </motion.div>
 
         <motion.div
@@ -87,23 +89,23 @@ export default function TeesPage() {
         >
           <div className="max-w-2xl mx-auto">
             <div className="bg-gray-800 rounded-lg p-12 border border-gray-700">
-              <h2 className="text-6xl font-bold tracking-wider mb-6">COMING SOON</h2>
-              <p className="text-gray-400 text-xl mb-8 leading-relaxed">
+              <h2 className="text-6xl font-bold tracking-wider mb-6 text-white drop-shadow-2xl">COMING SOON</h2>
+              <p className="text-gray-200 text-xl mb-8 leading-relaxed drop-shadow-lg">
                 We&apos;re crafting something special for the creative community. 
                 New t-shirt designs are in the works and will be dropping soon.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center justify-center space-x-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">Premium quality materials</span>
+                  <span className="text-gray-200 drop-shadow-lg">Premium quality materials</span>
                 </div>
                 <div className="flex items-center justify-center space-x-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">Limited edition designs</span>
+                  <span className="text-gray-200 drop-shadow-lg">Limited edition designs</span>
                 </div>
                 <div className="flex items-center justify-center space-x-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">Made by artists for artists</span>
+                  <span className="text-gray-200 drop-shadow-lg">Made by artists for artists</span>
                 </div>
               </div>
               <div className="mt-8">
