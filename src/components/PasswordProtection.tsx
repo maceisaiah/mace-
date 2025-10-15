@@ -20,38 +20,8 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
   const [borderColor, setBorderColor] = useState('from-red-500 to-red-700');
 
   useEffect(() => {
-    // Check if password already entered this session
-    if (typeof window !== 'undefined') {
-      const sessionAuth = sessionStorage.getItem('kryptic-session-authenticated');
-      
-      if (sessionAuth === 'true') {
-        // Already authenticated this session
-        setIsAuthenticated(true);
-        return;
-      }
-      
-      // Check if user is already authenticated and not expired
-      const authData = localStorage.getItem('kryptic-auth');
-      if (authData) {
-        try {
-          const { authenticated, expiresAt } = JSON.parse(authData);
-          const now = new Date().getTime();
-          const expirationDate = new Date('2026-01-01').getTime();
-          
-          if (authenticated && now < expirationDate) {
-            // Mark this session as authenticated
-            sessionStorage.setItem('kryptic-session-authenticated', 'true');
-            setIsAuthenticated(true);
-          } else {
-            // Clear expired auth
-            localStorage.removeItem('kryptic-auth');
-          }
-        } catch (error) {
-          // Clear invalid auth data
-          localStorage.removeItem('kryptic-auth');
-        }
-      }
-    }
+    // Always require password - no session tracking
+    // This ensures password is required every single time
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -64,30 +34,10 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
 
     if (password === CORRECT_PASSWORD) {
       setIsAuthenticated(true);
-      // Save to localStorage with expiration date (Jan 1st, 2026)
-      if (typeof window !== 'undefined') {
-        const authData = {
-          authenticated: true,
-          expiresAt: new Date('2026-01-01').getTime()
-        };
-        localStorage.setItem('kryptic-auth', JSON.stringify(authData));
-        // Mark this session as authenticated
-        sessionStorage.setItem('kryptic-session-authenticated', 'true');
-      }
+      // No localStorage - password required every time
     } else if (password === SPECIAL_SESSION_PASSWORD) {
       setIsAuthenticated(true);
-      // Special session password - active until Jan 1st, 2026
-      if (typeof window !== 'undefined') {
-        const authData = {
-          authenticated: true,
-          expiresAt: new Date('2026-01-01').getTime(),
-          specialSession: true
-        };
-        localStorage.setItem('kryptic-auth', JSON.stringify(authData));
-        localStorage.setItem('kryptic-special-session', 'true');
-        // Mark this session as authenticated
-        sessionStorage.setItem('kryptic-session-authenticated', 'true');
-      }
+      // No localStorage - password required every time
     } else {
       setError('Incorrect password. Access denied.');
       setPassword('');
