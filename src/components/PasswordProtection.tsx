@@ -239,6 +239,7 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
               🔒 Secure access • Members only • Underground exclusive
             </p>
           </div>
+          </motion.div>
         </div>
       </motion.div>
     </div>
