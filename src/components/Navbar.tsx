@@ -1,16 +1,48 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ShoppingCart, Moon, Sun } from "lucide-react";
+import { ShoppingCart, Moon, Sun, Heart } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useCart } from "./CartContext";
+import { MobileMenu } from "./MobileMenu";
 
 export function Navbar() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const { state } = useCart();
   const count = state.items.reduce((n, i) => n + i.quantity, 0);
+  
+  // Get wishlist count
+  const [wishlistCount, setWishlistCount] = React.useState(0);
+  
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const wishlist = JSON.parse(localStorage.getItem('kryptic-wishlist') || '[]');
+      setWishlistCount(wishlist.length);
+      
+      // Listen for wishlist changes
+      const handleStorageChange = () => {
+        const wishlist = JSON.parse(localStorage.getItem('kryptic-wishlist') || '[]');
+        setWishlistCount(wishlist.length);
+      };
+      
+      window.addEventListener('storage', handleStorageChange);
+      return () => window.removeEventListener('storage', handleStorageChange);
+    }
+  }, []);
+
+  // Mobile menu handlers (placeholder functions)
+  const handleSearchClick = () => {
+    // This would be implemented by the parent component
+    console.log('Search clicked');
+  };
+
+  const handleDiscountClick = () => {
+    // This would be implemented by the parent component
+    console.log('Discount wheel clicked');
+  };
 
   const link = (href: string, label: string) => (
     <Link
@@ -36,11 +68,19 @@ export function Navbar() {
           <button
             aria-label="Toggle theme"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="p-3 rounded-xl hover:bg-red-900/20 border-2 border-red-500/20 backdrop-blur-sm transition-all duration-300 hover:border-red-400/40 hover:shadow-lg hover:shadow-red-500/20 gothic-border"
+            className="hidden md:block p-3 rounded-xl hover:bg-red-900/20 border-2 border-red-500/20 backdrop-blur-sm transition-all duration-300 hover:border-red-400/40 hover:shadow-lg hover:shadow-red-500/20 gothic-border"
           >
             {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
           </button>
-          <Link href="/cart" className="relative p-3 rounded-xl hover:bg-red-900/20 border-2 border-red-500/20 backdrop-blur-sm transition-all duration-300 hover:border-red-400/40 hover:shadow-lg hover:shadow-red-500/20 gothic-border">
+          <Link href="/wishlist" className="hidden md:block relative p-3 rounded-xl hover:bg-red-900/20 border-2 border-red-500/20 backdrop-blur-sm transition-all duration-300 hover:border-red-400/40 hover:shadow-lg hover:shadow-red-500/20 gothic-border">
+            <Heart size={20} />
+            {wishlistCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-700 text-white text-xs font-bold leading-none px-2 py-1 rounded-full shadow-lg animate-pulse gothic-glow">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
+          <Link href="/cart" className="hidden md:block relative p-3 rounded-xl hover:bg-red-900/20 border-2 border-red-500/20 backdrop-blur-sm transition-all duration-300 hover:border-red-400/40 hover:shadow-lg hover:shadow-red-500/20 gothic-border">
             <ShoppingCart size={20} />
             {count > 0 && (
               <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-700 text-white text-xs font-bold leading-none px-2 py-1 rounded-full shadow-lg animate-pulse gothic-glow">
@@ -48,6 +88,14 @@ export function Navbar() {
               </span>
             )}
           </Link>
+          
+          {/* Mobile Menu */}
+          <MobileMenu 
+            cartItemCount={count}
+            wishlistCount={wishlistCount}
+            onSearchClick={handleSearchClick}
+            onDiscountClick={handleDiscountClick}
+          />
         </div>
       </div>
     </nav>

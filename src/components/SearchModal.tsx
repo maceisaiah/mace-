@@ -4,22 +4,21 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { products } from '@/lib/products';
+import { formatPrice } from '@/lib/types';
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const products = [
-  {
-    id: 'art-in-motion-hoodie',
-    name: 'ART IN MOTION Hoodie',
-    price: 35,
-    image: '/products/art-in-motion-hoodie.jpg',
-    category: 'Hoodies',
-    description: 'Distressed black hoodie with vintage wash featuring ART IN MOTION graphic'
-  }
-];
+// Helper function to get product category
+function getProductCategory(productName: string): string {
+  if (productName.toLowerCase().includes('hoodie')) return 'Hoodies';
+  if (productName.toLowerCase().includes('tee') || productName.toLowerCase().includes('shirt')) return 'T-Shirts';
+  if (productName.toLowerCase().includes('cap') || productName.toLowerCase().includes('hat')) return 'Accessories';
+  return 'Apparel';
+}
 
 export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -32,7 +31,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       const filtered = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchTerm.toLowerCase())
+        product.shortDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        getProductCategory(product.name).toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.colors.some(color => color.toLowerCase().includes(searchTerm.toLowerCase()))
       );
       setFilteredProducts(filtered);
     }
@@ -103,7 +104,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 {filteredProducts.map((product) => (
                   <Link
                     key={product.id}
-                    href="/hoodies"
+                    href={`/products/${product.slug}`}
                     onClick={onClose}
                     className="block"
                   >
@@ -121,11 +122,18 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-semibold text-white">{product.name}</h3>
-                        <p className="text-gray-400 text-sm">{product.category}</p>
-                        <p className="text-gray-500 text-xs">{product.description}</p>
+                        <p className="text-gray-400 text-sm">{getProductCategory(product.name)}</p>
+                        <p className="text-gray-500 text-xs">{product.shortDescription}</p>
+                        <div className="flex gap-2 mt-1">
+                          {product.colors.slice(0, 2).map((color, index) => (
+                            <span key={index} className="text-xs bg-gray-600 px-2 py-1 rounded">
+                              {color}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-white font-bold">${product.price}</p>
+                        <p className="text-white font-bold">{formatPrice(product.priceCents)}</p>
                       </div>
                     </motion.div>
                   </Link>

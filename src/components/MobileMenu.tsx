@@ -3,15 +3,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ShoppingBag, User, Search } from 'lucide-react';
+import { Menu, X, ShoppingBag, User, Search, Heart } from 'lucide-react';
 
 interface MobileMenuProps {
   cartItemCount: number;
+  wishlistCount: number;
   onSearchClick: () => void;
   onDiscountClick: () => void;
 }
 
-export function MobileMenu({ cartItemCount, onSearchClick, onDiscountClick }: MobileMenuProps) {
+export function MobileMenu({ cartItemCount, wishlistCount, onSearchClick, onDiscountClick }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
@@ -94,6 +95,20 @@ export function MobileMenu({ cartItemCount, onSearchClick, onDiscountClick }: Mo
                   <Search size={20} />
                   <span className="font-medium">Search</span>
                 </button>
+
+                <Link
+                  href="/wishlist"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full flex items-center justify-center space-x-2 py-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors relative border border-gray-600"
+                >
+                  <Heart size={20} />
+                  <span className="font-medium">Wishlist</span>
+                  {wishlistCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
+                      {wishlistCount}
+                    </span>
+                  )}
+                </Link>
 
                 <Link
                   href="/cart"
