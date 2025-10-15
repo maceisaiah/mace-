@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
+// import { getServerSession } from 'next-auth'
+// import { authOptions } from '@/lib/auth'
 
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions)
+    // const session = await getServerSession(authOptions)
+    const session = null // Temporarily disabled
     
     if (!session?.user || !('id' in session.user)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -46,7 +47,8 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const { items, shippingAddress, billingAddress } = await request.json()
-    const session = await getServerSession(authOptions)
+    // const session = await getServerSession(authOptions)
+    const session = null // Temporarily disabled
 
     if (!items || items.length === 0) {
       return NextResponse.json({ error: 'No items provided' }, { status: 400 })

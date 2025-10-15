@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { GalaxyEffects } from '@/components/GalaxyEffects';
 import { DemoCheckout } from '@/components/DemoCheckout';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 
 interface CartItem {
   id: string;
@@ -17,7 +17,8 @@ interface CartItem {
 }
 
 export default function CheckoutPage() {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
+  const session = null; // Temporarily disabled
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [selectedPayment, setSelectedPayment] = useState('stripe');
   const [formData, setFormData] = useState({

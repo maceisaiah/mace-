@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import { GalaxyEffects } from '@/components/GalaxyEffects';
 
 interface OrderItem {
@@ -35,7 +35,9 @@ interface Order {
 }
 
 export default function OrdersPage() {
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
+  const session = null; // Temporarily disabled
+  const status = 'unauthenticated'; // Temporarily disabled
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
