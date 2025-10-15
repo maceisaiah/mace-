@@ -61,12 +61,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white relative">
+    <div className="min-h-screen bg-black text-white relative w-full max-w-full overflow-x-hidden">
       <SmokeEffects />
       <GalaxyEffects />
       <UFO />
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
+      <nav className="fixed top-0 w-full max-w-full z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800 overflow-x-hidden">
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
