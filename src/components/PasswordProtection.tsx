@@ -18,10 +18,12 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [borderColor, setBorderColor] = useState('from-red-500 to-red-700');
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     // Always require password - no session tracking
     // This ensures password is required every single time
+    setIsReady(true);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -44,6 +46,11 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
     }
     setIsLoading(false);
   };
+
+  // Don't render anything until component is ready
+  if (!isReady) {
+    return null;
+  }
 
   if (isAuthenticated) {
     return <>{children}</>;
